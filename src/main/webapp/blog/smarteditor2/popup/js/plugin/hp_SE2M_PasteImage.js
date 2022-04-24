@@ -29,6 +29,7 @@ nhn.husky.SE2M_PasteImage = jindo.$Class({
 					img.src = result.filePath;
 					// 업로드된 이미지 추가
 					oApp.exec("PASTE_HTML", [img.outerHTML]);
+					debugger
 				}
 			},
 			timeout: 3,
@@ -55,7 +56,7 @@ nhn.husky.SE2M_PasteImage = jindo.$Class({
 			try {
 				if (!!base64) {
 					//Ajax통신하는 부분. 파일과 업로더할 url을 전달한다.
-					obj.callAjax(file, base64, '/api/shop/file/brandstory-base64');
+					obj.callAjax(file, base64, '/common/upload-base64');
 				}
 			} catch (e) { console.log(e); }
 		});
