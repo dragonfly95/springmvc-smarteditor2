@@ -1,4 +1,4 @@
-package com.system.blog.user;
+package com.system.blog.user.vo;
 
 import lombok.Data;
 
