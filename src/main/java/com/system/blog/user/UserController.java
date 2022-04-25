@@ -27,11 +27,11 @@ public class UserController {
 
     @GetMapping(value = "login.do")
     private String login() {
-        return "login";
+        return "user/login";
     }
 
     @PostMapping(value = "loginProcess")
-    private ResponseEntity loginProcess(HttpServletRequest request,  @RequestParam("userId") String userId, @RequestParam("passwd") String passwd, UserVO userVO) {
+    private ResponseEntity loginProcess(HttpServletRequest request, @RequestBody UserVO userVO) {
         EgovMap loginVO = userMapper.login(userVO);
         if (loginVO != null) {
             HttpSession session = request.getSession();
@@ -44,7 +44,7 @@ public class UserController {
 
     @GetMapping(value = "registation.do")
     private String registration() {
-        return "registration";
+        return "user/registration";
     }
 
     @PostMapping(value = "registrationProcess")

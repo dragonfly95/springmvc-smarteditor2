@@ -29,6 +29,12 @@ public class PostController {
         return "post/write";
     }
 
+    @GetMapping(value = "list.do")
+    private String list() {
+        return "post/list";
+    }
+
+
     @GetMapping(value = "view.do")
     private String view(Model model, @RequestParam("postId") String postId) {
         EgovMap post = postMapper.getPost(postId);

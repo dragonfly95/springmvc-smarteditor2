@@ -11,17 +11,36 @@
 </h1>
 
 <input type="hidden" name="id" value=""/>
-<select name="categoryId">
-    <option value="자유게시판"></option>
-</select>
-<input type="text" name="title" value=""/>
 
-<P>  The time on the server is ${serverTime}. </P>
-<textarea id="ir1" name="contents" cols="120" rows="30"></textarea>
+<table class="table table-striped" style="max-width: 1000px;">
+	<colgroup>
+		<cols width="100"/>
+		<cols width="*"/>
+	</colgroup>
+	<tr>
+		<td>카테고리</td>
+		<td>
+			<select name="categoryId">
+				<option value="자유게시판">자유게시판</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>제목</td>
+		<td>
+			<input type="text" name="title" value=""/>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<textarea id="ir1" name="contents" cols="120" rows="30"></textarea>
+		</td>
+	</tr>
+</table>
 
 
 <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
