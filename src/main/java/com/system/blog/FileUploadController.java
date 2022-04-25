@@ -51,7 +51,7 @@ public class FileUploadController {
 		Filedata.transferTo(new File(dir + folder + "/" + yyyyMM, file));
 
         sFileInfo += "&bNewLine=true";
-        sFileInfo += "&sFileName="+filenameExtension;
+        sFileInfo += "&sFileName="+file;
         sFileInfo += "&sFileURL="+ pathNm;
 
 		return sFileInfo;
