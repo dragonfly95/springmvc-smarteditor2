@@ -22,14 +22,14 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/common")
 public class FileUploadController {
 
-	private String dir = "D:\\kmong\\wiosoft\\springmvc-smarteditor2\\src\\main\\webapp\\blog\\";
+	private String dir = "C:\\Users\\user\\Downloads\\workspaces\\springmvc-smarteditor2\\src\\main\\webapp\\blog\\";
 	
     @PostMapping("/upload-file")
-    public @ResponseBody String uploadFile(MultipartFile Filedata, @RequestParam Map<String, Object> params, @RequestParam(defaultValue = "upload") String folder) {
+    public @ResponseBody String uploadFile(MultipartFile Filedata, @RequestParam Map<String, Object> params, @RequestParam(defaultValue = "upload") String folder) throws IOException {
     	
 
         String sFileInfo = "";
-        String brandstoryPath = "/" + folder + "/";
+        String brandstoryPath =  folder + "/";
 
         String yyyyMM = new SimpleDateFormat("yyyyMM").format(new Date());
 
@@ -37,15 +37,19 @@ public class FileUploadController {
         String originalFilename = Filedata.getOriginalFilename();
         String filenameExtension = StringUtils.getFilenameExtension(originalFilename);
 
-        String pathNm = String.format("/%s/%s.%s", yyyyMM, fileName, filenameExtension);
+		String file = fileName + "." + filenameExtension;
+
+        String pathNm = String.format("/%s/%s/%s/%s.%s", "blog", folder, yyyyMM, fileName, filenameExtension);
 
 
-    	File f = new File(dir, folder + yyyyMM);
+    	File f = new File(dir, folder + "/" +  yyyyMM);
     	if (!f.exists()) {
     		f.mkdirs();
     	}
-    	
-    	
+
+
+		Filedata.transferTo(new File(dir + folder + "/" + yyyyMM, file));
+
         sFileInfo += "&bNewLine=true";
         sFileInfo += "&sFileName="+filenameExtension;
         sFileInfo += "&sFileURL="+ pathNm;
