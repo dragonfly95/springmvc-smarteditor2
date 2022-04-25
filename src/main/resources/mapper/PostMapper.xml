@@ -5,6 +5,19 @@
 
 <mapper namespace="com.system.blog.post.mapper.PostMapper">
 
+    <insert id="writeProcess">
+
+
+    </insert>
+    <update id="updateProcess">
+
+
+    </update>
+    <delete id="deleteProcess">
+
+
+    </delete>
+
     <select id="getPost" resultType="egovframework.rte.psl.dataaccess.util.EgovMap">
 
     </select>

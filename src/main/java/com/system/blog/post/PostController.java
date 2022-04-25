@@ -38,16 +38,19 @@ public class PostController {
 
     @PostMapping(value = "writeProcess")
     private ResponseEntity writeProcess(@RequestBody PostVO postVO) {
+        int row = postMapper.writeProcess(postVO);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }
 
     @PutMapping(value = "upateProcess/{id}")
-    private ResponseEntity updateProcess(@PathVariable("id") String id) {
+    private ResponseEntity updateProcess(@RequestBody PostVO postVO, @PathVariable("id") String id) {
+        int row = postMapper.updateProcess(postVO);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }
 
     @DeleteMapping(value = "deleteProcess/{id}")
     private ResponseEntity deleteProcess(@PathVariable("id") String id) {
+        int row = postMapper.deleteProcess(id);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }
 }
