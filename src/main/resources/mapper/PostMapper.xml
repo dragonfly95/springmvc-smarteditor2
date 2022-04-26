@@ -37,8 +37,9 @@
     <resultMap id="postMap" type="egovframework.rte.psl.dataaccess.util.EgovMap">
         <id column="id" property="id" jdbcType="VARCHAR"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="category_id" property="categoryId" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
-        <association column="id" property="categoryId" select="getCategory"/>
+        <association column="category_id" property="category" select="getCategory11"/>
     </resultMap>
 
     <select id="getPost" resultMap="postMap">
@@ -49,12 +50,12 @@
           and id = #{postId}
     </select>
 
-    <select id="getCategory" resultType="egovframework.rte.psl.dataaccess.util.EgovMap">
+    <select id="getCategory11" parameterType="java.lang.String" resultType="egovframework.rte.psl.dataaccess.util.EgovMap">
         /* getCategory */
         SELECT `id`, `name`, `user_id`
         FROM `category`
         WHERE 1
-          and id=#{categoryId}
+          and id=#{category}
     </select>
 
     <select id="getSearch" resultMap="postMap">
