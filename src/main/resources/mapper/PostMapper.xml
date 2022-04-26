@@ -39,7 +39,7 @@
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="category_id" property="categoryId" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
-        <association column="category_id" property="category" select="getCategory11"/>
+        <association column="category_id" property="category" select="getCategory11" fetchType="eager"/>
     </resultMap>
 
     <select id="getPost" resultMap="postMap">
