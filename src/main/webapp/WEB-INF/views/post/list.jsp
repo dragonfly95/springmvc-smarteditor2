@@ -10,9 +10,15 @@
 	List!
 </h1>
 
-    <c:forEach var="post" items="${posts}">
-        <c:out value="${post.id}"/>: <c:out value="${post.title}"/> <br>
-    </c:forEach>
+    <ul id='post'>
+        <c:forEach var="post" items="${posts}">
+            <li data-id="${post.id}">
+                <c:out value="${post.id}"/>: <c:out value="${post.title}"/> :: ${post.regDate}
+            </li>
+        </c:forEach>
+
+    </ul>
+
 
 <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -21,6 +27,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="/blog/smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
-
+<script>
+$(document).ready(function () {
+    $('#post li').on('click', function() {
+        var postId = $(event.currentTarget).data('id');
+        location.href = '/post/view.do?postId=' + postId;
+    });
+});
+</script>
 </body>
 </html>

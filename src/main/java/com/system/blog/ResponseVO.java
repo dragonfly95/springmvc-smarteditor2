@@ -13,4 +13,9 @@ public class ResponseVO {
     public static ResponseVO of(String msg) {
         return new ResponseVO(msg);
     }
+
+    public String getMsg() {
+        return msg;
+    }
+
 }

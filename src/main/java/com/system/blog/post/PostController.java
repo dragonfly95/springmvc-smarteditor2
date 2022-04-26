@@ -1,5 +1,6 @@
 package com.system.blog.post;
 
+import com.system.blog.Idgenerator;
 import com.system.blog.ResponseVO;
 import com.system.blog.post.mapper.PostMapper;
 import com.system.blog.post.vo.PostVO;
@@ -17,6 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
+
 @Controller
 @RequestMapping(value = "post")
 public class PostController {
@@ -25,12 +31,18 @@ public class PostController {
     private PostMapper postMapper;
 
     @GetMapping(value = "write.do")
-    private String write() {
+    private String write(String postId, Model model) {
+        if (Objects.nonNull(postId)) {
+            EgovMap post = postMapper.getPost(postId);
+            model.addAttribute("post", post);
+        }
         return "post/write";
     }
 
     @GetMapping(value = "list.do")
-    private String list() {
+    private String list(Model model) {
+        List<EgovMap> posts = postMapper.getSearch();
+        model.addAttribute("posts", posts);
         return "post/list";
     }
 
@@ -44,6 +56,8 @@ public class PostController {
 
     @PostMapping(value = "writeProcess")
     private ResponseEntity writeProcess(@RequestBody PostVO postVO) {
+
+        postVO.setId(Idgenerator.getId());
         int row = postMapper.writeProcess(postVO);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }

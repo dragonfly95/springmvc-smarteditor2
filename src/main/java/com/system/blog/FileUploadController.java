@@ -23,8 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUploadController {
 
 	private String dir = "C:\\Users\\user\\Downloads\\workspaces\\springmvc-smarteditor2\\src\\main\\webapp\\blog\\";
-	
-    @PostMapping("/upload-file")
+
+	@PostMapping("/upload-file")
     public @ResponseBody String uploadFile(MultipartFile Filedata, @RequestParam Map<String, Object> params, @RequestParam(defaultValue = "upload") String folder) throws IOException {
     	
 

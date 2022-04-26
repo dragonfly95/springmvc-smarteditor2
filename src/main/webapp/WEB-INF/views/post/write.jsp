@@ -12,16 +12,22 @@
 
 <input type="hidden" name="id" value=""/>
 
+${post}
 <table class="table table-striped" style="max-width: 1000px;">
 	<colgroup>
 		<cols width="100"/>
 		<cols width="*"/>
 	</colgroup>
 	<tr>
+	    <td colspan="2" align="right">
+	        <input type="button" name="btnWrite" value="저장"/>
+	    </td>
+	</tr>
+	<tr>
 		<td>카테고리</td>
 		<td>
 			<select name="categoryId">
-				<option value="자유게시판">자유게시판</option>
+				<option value="1">자유게시판</option>
 			</select>
 		</td>
 	</tr>
@@ -33,7 +39,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<textarea id="ir1" name="contents" cols="120" rows="30"></textarea>
+			<textarea id="ir1" name="content" cols="110" rows="20"></textarea>
 		</td>
 	</tr>
 </table>
@@ -75,6 +81,29 @@ nhn.husky.EZCreator.createInIFrame({
 		//oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
 	},
 	fCreator: "createSEditor2"
+});
+</script>
+<script>
+$(document).ready(function () {
+    $('[name="btnWrite"]').on('click', function() {
+        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+
+        var blog = {
+            'categoryId': $('[name="categoryId"]').val(),
+            'title': $('[name="title"]').val(),
+            'content': $('[name="content"]').val()
+        };
+
+		$.ajax({
+			type: "post",
+			url: "/post/writeProcess",
+			data: JSON.stringify(blog),
+			contentType: "application/json",
+			success: function (response) {
+				debugger
+			}
+		});
+    });
 });
 </script>
 </body>

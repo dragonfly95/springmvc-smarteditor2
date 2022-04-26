@@ -38,5 +38,11 @@
         SELECT `id`, `category_id`, `title`, `content`, `user_id`, `reg_date`
         FROM `post`
         WHERE 1
+          and id = #{postId}
+    </select>
+    <select id="getSearch" resultType="egovframework.rte.psl.dataaccess.util.EgovMap">
+        SELECT `id`, `category_id`, `title`, `content`, `user_id`, `reg_date`
+        FROM `post`
+        WHERE 1
     </select>
 </mapper>

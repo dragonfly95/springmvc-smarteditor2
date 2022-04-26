@@ -11,9 +11,22 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-${postVO}
+<ul>
+    <li>${post.title}</li>
+    <li>${post.categoryId}</li>
+    <li>${post.regDate}</li>
+    <li>${post.content}</li>
+</ul>
 
-
+<ul>
+    <li>
+        <input type="button" name="btnList" value="목록"/>
+    </li>
+    <li>
+        <input type="button" name="btnEdit" value="수정" data-id="${post.id}"/>
+    </li>
+    <li></li>
+</ul>
 <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -22,6 +35,19 @@ ${postVO}
 
 <script type="text/javascript" src="/blog/smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
 
+<script>
+$(document).ready(function () {
+    $('[name="btnList"]').on('click', function() {
+        location.href='/post/list.do';
+    });
 
+    $('[name="btnEdit"]').on('click', function() {
+        var postId = $(event.currentTarget).data('id');
+        location.href='/post/write.do?postId=' + postId;
+    });
+});
+
+
+</script>
 </body>
 </html>
