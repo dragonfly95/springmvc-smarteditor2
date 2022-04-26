@@ -4,8 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.system.blog.post.mapper.CommentMapper">
+    <insert id="insertProcess">
+        INSERT INTO `comment`(`id`, `comment_text`, `reg_date`, `post_id`, `user_id`)
+        VALUES (
+                  `id`=#{id}
+                , `comment_text`=#{commentText}
+                , `reg_date`=now()
+                , `post_id`=#{postId}
+                , `user_id`=#{userId}
+        )
+    </insert>
+    <delete id="deleteProcess">
+        DELETE FROM `comment`
+        WHERE 1
+          and post_id=#{postId}
+          and id=#{commentId}
+          and user_id=#{userId}
+    </delete>
 
-    <select id="getPost" resultType="egovframework.rte.psl.dataaccess.util.EgovMap">
-
+    <select id="list" resultType="com.system.blog.post.vo.CommentVO">
+        SELECT `id`, `comment_text`, `reg_date`, `post_id`, `user_id`
+        FROM `comment`
+        WHERE 1
+          and post_id=#{postId}
     </select>
 </mapper>

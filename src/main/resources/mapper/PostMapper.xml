@@ -6,19 +6,37 @@
 <mapper namespace="com.system.blog.post.mapper.PostMapper">
 
     <insert id="writeProcess">
-
-
+        INSERT INTO `post`(`id`, `category_id`, `title`, `content`, `user_id`, `reg_date`)
+        VALUES (
+            #{id}
+            ,#{categoryId}
+            ,#{title}
+            ,#{content}
+            ,#{userId}
+            ,now())
     </insert>
+
+
     <update id="updateProcess">
-
-
+        UPDATE `post` SET
+            ,`category_id`=#{categoryId}
+            ,`title`=#{title}
+            ,`content`=#{content}
+        WHERE 1
+          and id=#{id}
+          and `user_id`=#{userId}
     </update>
+
     <delete id="deleteProcess">
-
-
+        DELETE FROM `post`
+        WHERE 1
+          and id=#{id}
+          and `user_id`=#{userId}
     </delete>
 
     <select id="getPost" resultType="egovframework.rte.psl.dataaccess.util.EgovMap">
-
+        SELECT `id`, `category_id`, `title`, `content`, `user_id`, `reg_date`
+        FROM `post`
+        WHERE 1
     </select>
 </mapper>

@@ -5,16 +5,31 @@
 
 <mapper namespace="com.system.blog.post.mapper.CategoryMapper">
     <insert id="insertProcess">
-
+        INSERT INTO `category`(`id`, `name`, `user_id`)
+        VALUES (
+        #{id}
+        ,#{name}
+        ,#{userId}
+        )
     </insert>
     <update id="updateProcess">
-
+        UPDATE `category` SET
+                ,`name`=[value-2]
+        WHERE 1
+         and `id`=#{id}
+         and `user_id`=#{userId}
     </update>
-    <delete id="deleteProcess">
 
+    <delete id="deleteProcess">
+        DELETE FROM `category`
+        WHERE 1
+          and `id`=#{id}
+         and `user_id`=#{userId}
     </delete>
 
     <select id="getList" resultType="egovframework.rte.psl.dataaccess.util.EgovMap">
-
+        SELECT `id`, `name`, `user_id`
+        FROM `category`
+        WHERE 1
     </select>
 </mapper>
