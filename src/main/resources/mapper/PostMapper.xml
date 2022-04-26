@@ -40,6 +40,7 @@
         <result column="category_id" property="categoryId" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
         <association column="category_id" property="category" select="getCategory11" fetchType="eager"/>
+        <collection column="id" property="comment" select="getComment11" />
     </resultMap>
 
     <select id="getPost" resultMap="postMap">
@@ -58,7 +59,7 @@
           and id=#{categoryId}
     </select>
 
-    <select id="getComment11" parameterType="java.lang.String" resultType="egovframework.rte.psl.dataaccess.util.EgovMap">
+    <select id="getComment11" parameterType="java.lang.String" resultType="com.system.blog.post.vo.CommentVO">
         /* getCategory */
         SELECT *
         FROM `comment`

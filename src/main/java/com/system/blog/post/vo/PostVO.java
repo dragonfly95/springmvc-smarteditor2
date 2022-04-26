@@ -3,6 +3,7 @@ package com.system.blog.post.vo;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 public class PostVO {
@@ -15,6 +16,7 @@ public class PostVO {
     private Timestamp regDate;
 
     private CategoryVO category;
+    private List<CommentVO> comment;
 
 }
 

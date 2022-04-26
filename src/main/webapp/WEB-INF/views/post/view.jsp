@@ -26,7 +26,7 @@
 
         <ul>
             <li>${post.title}</li>
-            <li>${post.categoryId}</li>
+            <li>${post.category.name}</li>
             <li>${post.regDate}</li>
             <li>${post.content}</li>
         </ul>
