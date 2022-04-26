@@ -40,6 +40,7 @@
         <result column="category_id" property="categoryId" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
         <association column="category_id" property="category" select="getCategory11"/>
+        <collection column="category_id" property="commentList" select="getComment11"/>
     </resultMap>
 
     <select id="getPost" resultMap="postMap">
@@ -55,7 +56,15 @@
         SELECT `id`, `name`, `user_id`
         FROM `category`
         WHERE 1
-          and id=#{category}
+          and id=#{categoryId}
+    </select>
+
+    <select id="getComment11" parameterType="java.lang.String" resultType="egovframework.rte.psl.dataaccess.util.EgovMap">
+        /* getCategory */
+        SELECT *
+        FROM `comment`
+        WHERE 1
+        and post_id=#{id}
     </select>
 
     <select id="getSearch" resultMap="postMap">
