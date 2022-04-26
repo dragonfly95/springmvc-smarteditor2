@@ -12,34 +12,36 @@
 
 <input type="hidden" name="id" value=""/>
 
-${post}
 <table class="table table-striped" style="max-width: 1000px;">
 	<colgroup>
-		<cols width="100"/>
-		<cols width="*"/>
+		<col width="120"/>
+		<col width="*"/>
 	</colgroup>
 	<tr>
 	    <td colspan="2" align="right">
-	        <input type="button" name="btnWrite" value="저장"/>
+	    <input type="button" name="btnList" value="목록"/>
+	        <input type="button" name="btnWrite" value="저장" data-id="${post.id}"/>
 	    </td>
 	</tr>
 	<tr>
 		<td>카테고리</td>
 		<td>
 			<select name="categoryId">
-				<option value="1">자유게시판</option>
+			<c:forEach var="vo" items="${category}">
+			    <option value="${vo.id}">${vo.name}</option>
+			</c:forEach>
 			</select>
 		</td>
 	</tr>
 	<tr>
 		<td>제목</td>
 		<td>
-			<input type="text" name="title" value=""/>
+			<input type="text" name="title" value="${post.title}" size="90"/>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2">
-			<textarea id="ir1" name="content" cols="110" rows="20"></textarea>
+			<textarea id="ir1" name="content" cols="110" rows="20">${post.content}</textarea>
 		</td>
 	</tr>
 </table>
@@ -85,24 +87,49 @@ nhn.husky.EZCreator.createInIFrame({
 </script>
 <script>
 $(document).ready(function () {
+
+    $('[name="btnList"]').on('click', function() {
+        location.href='/post/list.do';
+    });
+
     $('[name="btnWrite"]').on('click', function() {
         oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
 
+        var postId = $(event.currentTarget).data('id');
         var blog = {
+            'id': postId,
             'categoryId': $('[name="categoryId"]').val(),
             'title': $('[name="title"]').val(),
             'content': $('[name="content"]').val()
         };
 
-		$.ajax({
-			type: "post",
-			url: "/post/writeProcess",
-			data: JSON.stringify(blog),
-			contentType: "application/json",
-			success: function (response) {
-				debugger
-			}
-		});
+        <c:choose>
+            <c:when test="${not empty post}">
+                //--------------------------------
+                $.ajax({
+                    type: "put",
+                    url: "/post/upateProcess/" + postId,
+                    data: JSON.stringify(blog),
+                    contentType: "application/json",
+                    success: function (response) {
+                        location.href='/post/list.do';
+                    }
+                });
+            </c:when>
+            <c:otherwise>
+
+                //--------------------------------
+                $.ajax({
+                    type: "post",
+                    url: "/post/writeProcess",
+                    data: JSON.stringify(blog),
+                    contentType: "application/json",
+                    success: function (response) {
+                        location.href='/post/list.do';
+                    }
+                });
+            </c:otherwise>
+        </c:choose>
     });
 });
 </script>

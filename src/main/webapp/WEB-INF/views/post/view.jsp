@@ -11,22 +11,29 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<ul>
-    <li>${post.title}</li>
-    <li>${post.categoryId}</li>
-    <li>${post.regDate}</li>
-    <li>${post.content}</li>
-</ul>
+<div class="container">
+    <div class="row">
+    <!-- contents -->
 
-<ul>
-    <li>
-        <input type="button" name="btnList" value="목록"/>
-    </li>
-    <li>
-        <input type="button" name="btnEdit" value="수정" data-id="${post.id}"/>
-    </li>
-    <li></li>
-</ul>
+        <ul>
+            <li>
+                <input type="button" name="btnList" value="목록"/>
+            </li>
+            <li>
+                <input type="button" name="btnEdit" value="수정" data-id="${post.id}"/>
+            </li>
+        </ul>
+
+        <ul>
+            <li>${post.title}</li>
+            <li>${post.categoryId}</li>
+            <li>${post.regDate}</li>
+            <li>${post.content}</li>
+        </ul>
+
+    </div>
+</div>
+
 <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

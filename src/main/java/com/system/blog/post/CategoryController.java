@@ -1,5 +1,6 @@
 package com.system.blog.post;
 
+import com.system.blog.Idgenerator;
 import com.system.blog.ResponseVO;
 import com.system.blog.post.mapper.CategoryMapper;
 import com.system.blog.post.vo.CategoryVO;
@@ -31,13 +32,17 @@ public class CategoryController {
     }
 
     @GetMapping(value = "list")
-    public ResponseEntity list(@RequestParam("userId") String userId) {
+    public ResponseEntity list(String userId) {
         List<EgovMap> list = categoryMapper.getList(userId);
-        return ResponseEntity.ok().body(list);
+        EgovMap map = new EgovMap();
+        map.put("data", list);
+
+        return ResponseEntity.ok().body(map);
     }
 
     @PostMapping(value = "insertProcess")
     public ResponseEntity insertProcess(@RequestBody CategoryVO categoryVO) {
+        categoryVO.setId(Idgenerator.getId());
         int row = categoryMapper.insertProcess(categoryVO);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }

@@ -2,6 +2,7 @@ package com.system.blog.post;
 
 import com.system.blog.Idgenerator;
 import com.system.blog.ResponseVO;
+import com.system.blog.post.mapper.CategoryMapper;
 import com.system.blog.post.mapper.PostMapper;
 import com.system.blog.post.vo.PostVO;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
@@ -30,12 +31,21 @@ public class PostController {
     @Autowired
     private PostMapper postMapper;
 
+    @Autowired
+    private CategoryMapper categoryMapper;
+
     @GetMapping(value = "write.do")
     private String write(String postId, Model model) {
+
+        String userId = null;
+
         if (Objects.nonNull(postId)) {
             EgovMap post = postMapper.getPost(postId);
             model.addAttribute("post", post);
         }
+        List<EgovMap> category = categoryMapper.getList(userId);
+        model.addAttribute("category", category);
+
         return "post/write";
     }
 

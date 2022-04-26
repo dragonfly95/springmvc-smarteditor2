@@ -4,6 +4,7 @@
 <html>
 <head>
 	<title>Home</title>
+
 </head>
 <body>
 <h1>
@@ -13,7 +14,7 @@
     <ul id='post'>
         <c:forEach var="post" items="${posts}">
             <li data-id="${post.id}">
-                <c:out value="${post.id}"/>: <c:out value="${post.title}"/> :: ${post.regDate}
+                <c:out value="${post.title}"/> :: ${post.regDate}
             </li>
         </c:forEach>
 
