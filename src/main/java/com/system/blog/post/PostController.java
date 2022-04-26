@@ -40,7 +40,7 @@ public class PostController {
         String userId = null;
 
         if (Objects.nonNull(postId)) {
-            EgovMap post = postMapper.getPost(postId);
+            PostVO post = postMapper.getPost(postId);
             model.addAttribute("post", post);
         }
         List<EgovMap> category = categoryMapper.getList(userId);
@@ -51,7 +51,7 @@ public class PostController {
 
     @GetMapping(value = "list.do")
     private String list(Model model) {
-        List<EgovMap> posts = postMapper.getSearch();
+        List<PostVO> posts = postMapper.getSearch();
         model.addAttribute("posts", posts);
         return "post/list";
     }
@@ -59,7 +59,7 @@ public class PostController {
 
     @GetMapping(value = "view.do")
     private String view(Model model, @RequestParam("postId") String postId) {
-        EgovMap post = postMapper.getPost(postId);
+        PostVO post = postMapper.getPost(postId);
         model.addAttribute("post", post);
         return "post/view";
     }

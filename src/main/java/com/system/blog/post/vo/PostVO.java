@@ -14,5 +14,7 @@ public class PostVO {
     private String userId;
     private Timestamp regDate;
 
+    private CategoryVO category;
+
 }
 

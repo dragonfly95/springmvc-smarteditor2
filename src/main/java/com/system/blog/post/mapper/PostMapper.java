@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PostMapper {
 
-    EgovMap getPost(String postId);
+    PostVO getPost(String postId);
 
 
     int writeProcess(PostVO postVO);
@@ -16,6 +16,6 @@ public interface PostMapper {
 
     int updateProcess(PostVO postVO);
 
-    List<EgovMap> getSearch();
+    List<PostVO> getSearch();
 
 }
