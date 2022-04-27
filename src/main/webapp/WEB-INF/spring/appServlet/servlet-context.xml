@@ -52,5 +52,11 @@
 			<beans:bean class="com.system.blog.config.LoginUserArgumentResolver"/>
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
-	
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mapping path="/**"/>
+			<beans:bean class="com.system.blog.config.CommonInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans:beans>
