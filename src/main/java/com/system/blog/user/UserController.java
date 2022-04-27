@@ -13,12 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,6 +26,17 @@ public class UserController {
 
     @Autowired
     private UserMapper userMapper;
+
+    @GetMapping(value = "logout.do")
+    private String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+        if (loginVO != null) {
+            session.invalidate();
+        }
+        return "user/login";
+    }
+
 
     @GetMapping(value = "login.do")
     private String login() {

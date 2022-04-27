@@ -14,6 +14,7 @@
     <div class="container">
         <div class="row">
             <input type="button" name="btnWrite" value="글작성"/>
+            <input type="button" name="btnLogout" value="logout" class="btn btn-parimary"/>
             <ul id='post'>
                 <c:forEach var="post" items="${posts}">
                     <li data-id="${post.id}">
@@ -41,6 +42,9 @@ $(document).ready(function () {
 
     $('[name="btnWrite"]').on('click', function() {
         location.href = '/post/write.do';
+    });
+    $('[name="btnLogout"]').on('click', function() {
+        location.href = '/user/logout.do';
     });
 });
 </script>
