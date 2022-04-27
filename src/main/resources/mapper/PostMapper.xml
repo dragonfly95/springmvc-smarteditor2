@@ -39,6 +39,7 @@
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="category_id" property="categoryId" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="reg_date" property="regDate" jdbcType="TIMESTAMP"/>
         <association column="category_id" property="category" select="getCategory11" fetchType="eager"/>
         <collection column="id" property="comment" select="getComment11" />
     </resultMap>
