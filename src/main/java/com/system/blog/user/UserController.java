@@ -4,6 +4,7 @@ package com.system.blog.user;
 import com.system.blog.ResponseVO;
 import com.system.blog.user.mapper.UserMapper;
 import com.system.blog.user.vo.UserVO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,7 @@ public class UserController {
     }
 
     @PostMapping(value = "registrationProcess")
-    private ResponseEntity registrationProcess(@Validated @RequestBody UserVO userVO, BindingResult bindingResult) {
+    private ResponseEntity registrationProcess(@Valid @RequestBody UserVO userVO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new RuntimeException("오류 !!!");
         }

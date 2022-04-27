@@ -1,5 +1,6 @@
 package com.system.blog.user.vo;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,13 +15,13 @@ public class UserVO {
 
     private String userId;
 
-    @NotEmpty(message = "Please provide a author")
+    @NotNull(message = "Please provide a author")
     private String name;
 
     @NotEmpty(message = "Please provide a author")
     private String passwd;
 
-    @NotEmpty(message = "이메일을 입력하세요")
+    @NotNull(message = "이메일을 입력하세요")
     private String email;
 
 }
