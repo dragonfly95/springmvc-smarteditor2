@@ -2,6 +2,7 @@ package com.system.blog.user.vo;
 
 import lombok.Data;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -18,6 +19,7 @@ public class UserVO {
     private String passwd;
 
     @NotNull
+    @Email
     private String email;
 
 }

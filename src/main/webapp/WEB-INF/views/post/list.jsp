@@ -11,16 +11,19 @@
 	List!
 </h1>
 
-    <input type="button" name="btnWrite" value="글작성"/>
-    <ul id='post'>
-        <c:forEach var="post" items="${posts}">
-            <li data-id="${post.id}">
-                <c:out value="${post.title}"/> :: ${post.regDate}
-            </li>
-        </c:forEach>
+    <div class="container">
+        <div class="row">
+            <input type="button" name="btnWrite" value="글작성"/>
+            <ul id='post'>
+                <c:forEach var="post" items="${posts}">
+                    <li data-id="${post.id}">
+                        <c:out value="${post.title}"/> :: ${post.regDate}
+                    </li>
+                </c:forEach>
 
-    </ul>
-
+            </ul>
+        </div>
+    </div>
 
 <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

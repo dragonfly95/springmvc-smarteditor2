@@ -205,6 +205,18 @@
 			<version>2.0.1.Final</version>
 		</dependency>
 
+<!--		<dependency>-->
+<!--			<groupId>org.springmodules</groupId>-->
+<!--			<artifactId>spring-modules-validation</artifactId>-->
+<!--			<version>0.9</version>-->
+<!--		</dependency>-->
+
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+
 	</dependencies>
     <build>
         <plugins>

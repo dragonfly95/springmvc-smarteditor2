@@ -10,11 +10,21 @@
 	Login!
 </h1>
 
-<input type="text" name="userId" value=""/>
-<input type="password" name="passwd" value=""/>
+    <div class="container">
+        <div class="row">
+            <input type="text" name="userId" value=""/>
+            <input type="password" name="passwd" value=""/>
 
-<input type="button" name="btnLogin" value="로그인"/>
 
+        </div>
+        <div class="row">
+        <br/>
+            <input type="button" name="btnLogin" value="로그인"/>
+        <br/>
+        <br/>
+            <input type="button" name="btnRegistration" value="회원가입"/>
+        </div>
+    </div>
 <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -25,7 +35,11 @@
 
 <script>
 $(document).ready(function () {
-	
+
+	$('[name="btnRegistration"]').on('click', function() {
+	    location.href = '/user/registation.do';
+	});
+
 	$('[name="btnLogin"]').on('click', function() {
 		var login = {
 			'userId': $('[name="userId"]').val(),
