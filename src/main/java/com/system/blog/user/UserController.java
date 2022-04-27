@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping(value = "user")
@@ -55,7 +55,7 @@ public class UserController {
     }
 
     @PostMapping(value = "registrationProcess")
-    private ResponseEntity registrationProcess(@RequestBody @Valid UserVO userVO, BindingResult bindingResult) {
+    private ResponseEntity registrationProcess(@Validated @RequestBody UserVO userVO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new RuntimeException("오류 !!!");
         }
