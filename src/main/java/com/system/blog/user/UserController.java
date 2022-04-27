@@ -61,10 +61,7 @@ public class UserController {
     }
 
     @PostMapping(value = "registrationProcess")
-    private ResponseEntity registrationProcess(@RequestBody @Valid UserVO userVO, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            throw new RuntimeException("회원가입 오류");
-        }
+    private ResponseEntity registrationProcess(@RequestBody @Valid UserVO userVO) {
         int row = userMapper.registrationProcess(userVO);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }
