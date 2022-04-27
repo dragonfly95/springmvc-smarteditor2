@@ -7,9 +7,14 @@ import com.system.blog.user.mapper.UserMapper;
 import com.system.blog.user.vo.UserVO;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
@@ -49,7 +55,10 @@ public class UserController {
     }
 
     @PostMapping(value = "registrationProcess")
-    private ResponseEntity registrationProcess(@RequestBody UserVO userVO) {
+    private ResponseEntity registrationProcess(@RequestBody @Valid UserVO userVO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new RuntimeException("회원가입 오류");
+        }
         int row = userMapper.registrationProcess(userVO);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }
