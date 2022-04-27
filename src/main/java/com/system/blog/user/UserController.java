@@ -1,6 +1,7 @@
 package com.system.blog.user;
 
 
+import com.system.blog.Idgenerator;
 import com.system.blog.ResponseVO;
 import com.system.blog.user.mapper.UserMapper;
 import com.system.blog.user.vo.UserVO;
@@ -32,7 +33,7 @@ public class UserController {
 
     @PostMapping(value = "loginProcess")
     private ResponseEntity loginProcess(HttpServletRequest request, @RequestBody UserVO userVO) {
-        EgovMap loginVO = userMapper.login(userVO);
+        UserVO loginVO = userMapper.login(userVO);
         if (loginVO != null) {
             HttpSession session = request.getSession();
             session.setAttribute("loginVO", loginVO);

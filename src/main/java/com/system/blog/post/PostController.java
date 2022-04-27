@@ -2,9 +2,11 @@ package com.system.blog.post;
 
 import com.system.blog.Idgenerator;
 import com.system.blog.ResponseVO;
+import com.system.blog.config.Login;
 import com.system.blog.post.mapper.CategoryMapper;
 import com.system.blog.post.mapper.PostMapper;
 import com.system.blog.post.vo.PostVO;
+import com.system.blog.user.vo.UserVO;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +37,7 @@ public class PostController {
     private CategoryMapper categoryMapper;
 
     @GetMapping(value = "write.do")
-    private String write(String postId, Model model) {
+    private String write(@Login UserVO userVO, String postId, Model model) {
 
         String userId = null;
 
@@ -65,9 +67,10 @@ public class PostController {
     }
 
     @PostMapping(value = "writeProcess")
-    private ResponseEntity writeProcess(@RequestBody PostVO postVO) {
+    private ResponseEntity writeProcess(@Login UserVO userVO, @RequestBody PostVO postVO) {
 
         postVO.setId(Idgenerator.getId());
+        postVO.setUserId(userVO.getUserId());
         int row = postMapper.writeProcess(postVO);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }

@@ -27,6 +27,7 @@
 		<td>카테고리</td>
 		<td>
 			<select name="categoryId">
+			<option value="">select option</option>
 			<c:forEach var="vo" items="${category}">
 			    <option value="${vo.id}">${vo.name}</option>
 			</c:forEach>

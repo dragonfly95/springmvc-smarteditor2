@@ -2,8 +2,10 @@ package com.system.blog.post;
 
 import com.system.blog.Idgenerator;
 import com.system.blog.ResponseVO;
+import com.system.blog.config.Login;
 import com.system.blog.post.mapper.CategoryMapper;
 import com.system.blog.post.vo.CategoryVO;
+import com.system.blog.user.vo.UserVO;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,20 +43,23 @@ public class CategoryController {
     }
 
     @PostMapping(value = "insertProcess")
-    public ResponseEntity insertProcess(@RequestBody CategoryVO categoryVO) {
+    public ResponseEntity insertProcess(@Login UserVO userVO,  @RequestBody CategoryVO categoryVO) {
         categoryVO.setId(Idgenerator.getId());
+        categoryVO.setUserId(userVO.getUserId());
+
         int row = categoryMapper.insertProcess(categoryVO);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }
 
     @PutMapping(value = "updateProcess/{id}")
-    public ResponseEntity updateProcess(@RequestBody CategoryVO categoryVO, @PathVariable("id") String id) {
+    public ResponseEntity updateProcess(@Login UserVO userVO, @RequestBody CategoryVO categoryVO, @PathVariable("id") String id) {
+        categoryVO.setUserId(userVO.getUserId());
         int row = categoryMapper.updateProcess(categoryVO);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }
 
     @DeleteMapping(value = "deleteProcess/{id}")
-    public ResponseEntity deleteProcess(@PathVariable("id") String id) {
+    public ResponseEntity deleteProcess(@Login UserVO userVO, @PathVariable("id") String id) {
         int row = categoryMapper.deleteProcess(id);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }

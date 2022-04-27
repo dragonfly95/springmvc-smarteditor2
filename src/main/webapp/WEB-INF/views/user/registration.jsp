@@ -78,7 +78,8 @@ $(document).ready(function () {
 			data: JSON.stringify(registration),
 			contentType: "application/json",
 			success: function (response) {
-				debugger
+				alert('회원가입완료');
+				location.href='/user/login.do';
 			}
 		});
 		

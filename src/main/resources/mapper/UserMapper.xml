@@ -15,8 +15,8 @@
         )
     </insert>
 
-    <select id="login" resultType="egovframework.rte.psl.dataaccess.util.EgovMap">
-        SELECT `id`, `name`, `passwd`, `email`
+    <select id="login" resultType="com.system.blog.user.vo.UserVO">
+        SELECT `id` as user_id, `name`, `passwd`, `email`
         FROM `user`
         WHERE 1
           and id=#{userId}

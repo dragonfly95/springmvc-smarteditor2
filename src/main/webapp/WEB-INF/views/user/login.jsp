@@ -38,7 +38,7 @@ $(document).ready(function () {
 			data: JSON.stringify(login),
 			contentType: "application/json",
 			success: function (response) {
-				debugger
+				location.href='/post/list.do';
 			}
 		});
 		//--------------------------------

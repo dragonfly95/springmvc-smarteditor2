@@ -82,7 +82,9 @@ $(document).ready(function () {
                 $.each(response.data, function (indexInArray, valueOfElement) { 
                      str += '<li data-id='+ valueOfElement.id +'>' + valueOfElement.name + '</li>';
                 });
+                $('#result').empty();
                 $('#result').append(str);
+                $('[name="name"]').val('');
 			}
 		});
     }

@@ -11,6 +11,7 @@
 	List!
 </h1>
 
+    <input type="button" name="btnWrite" value="글작성"/>
     <ul id='post'>
         <c:forEach var="post" items="${posts}">
             <li data-id="${post.id}">
@@ -33,6 +34,10 @@ $(document).ready(function () {
     $('#post li').on('click', function() {
         var postId = $(event.currentTarget).data('id');
         location.href = '/post/view.do?postId=' + postId;
+    });
+
+    $('[name="btnWrite"]').on('click', function() {
+        location.href = '/post/write.do';
     });
 });
 </script>

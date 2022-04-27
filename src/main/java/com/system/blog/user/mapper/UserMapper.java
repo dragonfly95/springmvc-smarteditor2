@@ -8,6 +8,6 @@ import java.util.Map;
 public interface UserMapper {
     int registrationProcess(UserVO userVO);
 
-    EgovMap login(UserVO userVO);
+    UserVO login(UserVO userVO);
 
 }
