@@ -1,24 +1,18 @@
 package com.system.blog.user;
 
 
-import com.system.blog.Idgenerator;
 import com.system.blog.ResponseVO;
 import com.system.blog.user.mapper.UserMapper;
 import com.system.blog.user.vo.UserVO;
-import egovframework.rte.psl.dataaccess.util.EgovMap;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.Map;
 
 @Controller
 @RequestMapping(value = "user")
