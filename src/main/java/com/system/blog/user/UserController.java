@@ -22,6 +22,16 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
+
+    @PostMapping(value = "registrationProcess")
+    private ResponseEntity registrationProcess(@Valid @RequestBody UserVO userVO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new RuntimeException("오류 !!!");
+        }
+        int row = userMapper.registrationProcess(userVO);
+        return ResponseEntity.ok().body(ResponseVO.of("ok"));
+    }
+
     @GetMapping(value = "logout.do")
     private String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -55,12 +65,4 @@ public class UserController {
         return "user/registration";
     }
 
-    @PostMapping(value = "registrationProcess")
-    private ResponseEntity registrationProcess(@Valid @RequestBody UserVO userVO, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            throw new RuntimeException("오류 !!!");
-        }
-        int row = userMapper.registrationProcess(userVO);
-        return ResponseEntity.ok().body(ResponseVO.of("ok"));
-    }
 }
