@@ -3,6 +3,7 @@ package com.system.blog.user;
 
 import com.system.blog.ResponseVO;
 import com.system.blog.user.mapper.UserMapper;
+import com.system.blog.user.vo.LoginVO;
 import com.system.blog.user.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,9 +51,14 @@ public class UserController {
 
     @PostMapping(value = "loginProcess")
     private ResponseEntity loginProcess(HttpServletRequest request, @RequestBody UserVO userVO) {
-        UserVO loginVO = userMapper.login(userVO);
-        if (loginVO != null) {
+        UserVO user = userMapper.login(userVO);
+        if (user != null) {
             HttpSession session = request.getSession();
+
+            LoginVO loginVO = new LoginVO();
+            loginVO.setUserId(user.getUserId());
+            loginVO.setEmail(user.getEmail());
+            loginVO.setName(user.getName());
             session.setAttribute("loginVO", loginVO);
         } else {
             throw new RuntimeException("login failed");

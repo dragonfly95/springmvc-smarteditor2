@@ -1,6 +1,6 @@
 package com.system.blog.config;
 
-import com.system.blog.user.vo.UserVO;
+import com.system.blog.user.vo.LoginVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -20,12 +20,12 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         boolean loginAnnotation = parameter.hasParameterAnnotation(Login.class);
-        return UserVO.class.isAssignableFrom(parameter.getParameterType());
+        return LoginVO.class.isAssignableFrom(parameter.getParameterType());
     }
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+        LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
         if (loginVO == null) {
             throw new MyLoginException("로그인 해주세요");
         }
