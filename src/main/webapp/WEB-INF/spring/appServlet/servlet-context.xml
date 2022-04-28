@@ -71,8 +71,6 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-<!--	<beans:bean id="validator"-->
-<!--		  class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>-->
-
+<!--	<beans:bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>-->
 <!--	<beans:bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>-->
 </beans:beans>
