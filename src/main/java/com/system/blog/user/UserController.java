@@ -36,7 +36,7 @@ public class UserController {
     @GetMapping(value = "logout.do")
     private String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+        LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
         if (loginVO != null) {
             session.invalidate();
         }

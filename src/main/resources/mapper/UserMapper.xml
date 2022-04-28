@@ -16,7 +16,7 @@
     </insert>
 
     <select id="login" resultType="com.system.blog.user.vo.UserVO">
-        SELECT `id` as user_id, `name`, `passwd`, `email`
+        SELECT `id` as userId, `name`, `passwd`, `email`
         FROM `user`
         WHERE 1
           and id=#{userId}

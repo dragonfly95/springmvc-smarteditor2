@@ -40,13 +40,11 @@ public class PostController {
     @GetMapping(value = "write.do")
     private String write(@Login LoginVO loginVO, String postId, Model model) {
 
-        String userId = null;
-
         if (Objects.nonNull(postId)) {
             PostVO post = postMapper.getPost(postId);
             model.addAttribute("post", post);
         }
-        List<EgovMap> category = categoryMapper.getList(userId);
+        List<EgovMap> category = categoryMapper.getList(loginVO.getUserId());
         model.addAttribute("category", category);
 
         return "post/write";
@@ -77,7 +75,8 @@ public class PostController {
     }
 
     @PutMapping(value = "upateProcess/{id}")
-    private ResponseEntity updateProcess(@RequestBody PostVO postVO, @PathVariable("id") String id) {
+    private ResponseEntity updateProcess(@Login LoginVO loginVO, @RequestBody PostVO postVO, @PathVariable("id") String id) {
+        postVO.setUserId(loginVO.getUserId());
         int row = postMapper.updateProcess(postVO);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }
