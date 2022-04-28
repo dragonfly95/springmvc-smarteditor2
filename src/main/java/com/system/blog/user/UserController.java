@@ -25,7 +25,7 @@ public class UserController {
 
 
     @PostMapping(value = "registrationProcess")
-    private ResponseEntity registrationProcess(@Valid @RequestBody UserVO userVO, BindingResult bindingResult) {
+    private ResponseEntity registrationProcess(@Validated @RequestBody UserVO userVO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new RuntimeException("오류 !!!");
         }

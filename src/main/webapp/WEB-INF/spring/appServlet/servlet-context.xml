@@ -22,9 +22,9 @@
 <!--	<mvc:annotation-driven />-->
 
 
-	<context:component-scan base-package="com.system.blog" />
 
 
+	<!-- 순서 제일 중요 -->
 	<mvc:annotation-driven>
 		<mvc:argument-resolvers>
 			<beans:bean class="com.system.blog.config.LoginUserArgumentResolver"/>
@@ -63,6 +63,7 @@
 		<beans:property name="maxInMemorySize" value="100000000" />
 	</beans:bean>
 
+	<context:component-scan base-package="com.system.blog" />
 
 	<mvc:interceptors>
 		<mvc:interceptor>
