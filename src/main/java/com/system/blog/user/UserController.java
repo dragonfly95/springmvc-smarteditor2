@@ -4,7 +4,6 @@ package com.system.blog.user;
 import com.system.blog.ResponseVO;
 import com.system.blog.user.mapper.UserMapper;
 import com.system.blog.user.vo.UserVO;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping(value = "user")
