@@ -25,8 +25,15 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
+        
+    	String method1 = webRequest.getHeader("method1");
+    	
+    	LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
         if (loginVO == null) {
+        	if ("api".equals(method1)) {
+        		throw new MyApiLoginException("NOT_LOGIN");
+        	
+			}
             throw new MyLoginException("로그인 해주세요");
         }
         return loginVO;

@@ -23,6 +23,12 @@ public class MyExceptionController {
         return "user/login";
     }
 
+    @ExceptionHandler(value = MyApiLoginException.class)
+    public ResponseEntity<String> apiLoginExceptionHandler(MyApiLoginException ex) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        return new ResponseEntity(ResponseVO.of(ex.getMsg()), headers, HttpStatus.OK);
+    }
 
     @ExceptionHandler({BindException.class})
     public ResponseEntity<String> processValidationError(BindException exception) {
@@ -41,8 +47,8 @@ public class MyExceptionController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex){
         Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors()
-                .forEach(c -> errors.put(((FieldError) c).getField(), c.getDefaultMessage()));
+//        ex.getBindingResult().getAllErrors()
+//                .forEach(c -> errors.put(((FieldError) c).getField(), c.getDefaultMessage()));
         return ResponseEntity.badRequest().body(errors);
     }
 

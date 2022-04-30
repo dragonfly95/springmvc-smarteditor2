@@ -20,6 +20,6 @@ public class HelloworldController {
     	for (String string : arr) {
 			System.out.println(string);
 		}
-        return "home";
+        return "redirect:/post/list.do";
     }
 }

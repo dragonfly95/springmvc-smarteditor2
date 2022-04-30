@@ -31,6 +31,7 @@
             <li>${post.content}</li>
         </ul>
 
+        <div id="commentList"></div>
     </div>
 </div>
 
@@ -52,6 +53,11 @@ $(document).ready(function () {
         var postId = $(event.currentTarget).data('id');
         location.href='/post/write.do?postId=' + postId;
     });
+
+    function loadData() {
+        $('#commentList').load('/comment/list/${post.id}');
+    }
+    loadData();
 });
 
 
