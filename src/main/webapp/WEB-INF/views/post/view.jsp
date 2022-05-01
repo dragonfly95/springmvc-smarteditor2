@@ -6,12 +6,13 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	View !
-</h1>
 
-<P>  The time on the server is ${serverTime}. </P>
 <div class="container">
+    <div class="row">
+        <h1>
+            View !
+        </h1>
+    </div>
     <div class="row">
     <!-- contents -->
 
