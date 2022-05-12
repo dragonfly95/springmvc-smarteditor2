@@ -17,7 +17,7 @@
             <input type="button" name="btnLogout" value="logout" class="btn btn-parimary"/>
             <ul id='post'>
                 <c:forEach var="post" items="${posts}">
-                    <li data-id="${post.id}">
+                    <li data-id="${post.id}" style="margin: 10px 0;cursor: pointer;">
                         <c:out value="${post.title}"/> :: ${post.regDate}
                     </li>
                 </c:forEach>

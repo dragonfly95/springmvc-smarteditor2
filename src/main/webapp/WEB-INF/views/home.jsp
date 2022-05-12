@@ -11,6 +11,9 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+<input type="file" name="multipartFile" value=""/>
+<input type="button" name="btnFile" id="btnFile" value=""/>
+
 <textarea id="ir1" name="contents" cols="120" rows="30"></textarea>
 
 
@@ -19,7 +22,26 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript" src="/blog/smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script>
 
+$("#btnFile").on('click', function() {
+        var data = new FormData();
+         data.append('multipartFile', $('[name="multipartFile"]')[0].files[0]);
+
+         $.ajax({
+             type: "POST",
+             url: "/test123",
+             data: data,
+             processData: false,
+             contentType: false,
+             dataType: 'json',
+             success: function (data) {
+                debugger
+             }
+         });
+
+});
+</script>
 <script type="text/javascript">
 var oEditors = [];
 

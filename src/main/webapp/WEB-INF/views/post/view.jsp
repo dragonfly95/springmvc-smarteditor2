@@ -15,8 +15,8 @@
     <div class="row">
     <!-- contents -->
 
-        <ul>
-            <li>
+        <ul style="list-style: none;">
+            <li style="float: left;">
                 <input type="button" name="btnList" value="목록"/>
             </li>
             <li>
@@ -24,7 +24,7 @@
             </li>
         </ul>
 
-        <ul>
+        <ul style="list-style: none;">
             <li>${post.title}</li>
             <li>${post.category.name}</li>
             <li>${post.regDate}</li>
