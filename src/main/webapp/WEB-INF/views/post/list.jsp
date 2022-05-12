@@ -7,11 +7,13 @@
 
 </head>
 <body>
-<h1>
-	List!
-</h1>
 
     <div class="container">
+        <div class="row">
+            <h1>
+                List!
+            </h1>
+        </div>
         <div class="row">
             <input type="button" name="btnWrite" value="글작성"/>
             <input type="button" name="btnLogout" value="logout" class="btn btn-parimary"/>

@@ -6,12 +6,13 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	View !
-</h1>
 
-<P>  The time on the server is ${serverTime}. </P>
 <div class="container">
+    <div class="row">
+        <h1>
+            View !
+        </h1>
+    </div>
     <div class="row">
     <!-- contents -->
 
@@ -31,6 +32,7 @@
             <li>${post.content}</li>
         </ul>
 
+        <div id="commentList"></div>
     </div>
 </div>
 
@@ -52,6 +54,11 @@ $(document).ready(function () {
         var postId = $(event.currentTarget).data('id');
         location.href='/post/write.do?postId=' + postId;
     });
+
+    function loadData() {
+        $('#commentList').load('/comment/list/${post.id}');
+    }
+    loadData();
 });
 
 

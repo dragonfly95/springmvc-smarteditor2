@@ -23,7 +23,15 @@ public class UserVO {
     private String passwd;
 
     @Phone
-    @NotNull(message = "이메일을 입력하세요")
+    @NotNull(message = "email is not null")
     private String email;
+
+	@Override
+	public String toString() {
+		return "UserVO [userId=" + userId + ", name=" + name + ", email=" + email + "]";
+	}
+    
+    
+    
 
 }

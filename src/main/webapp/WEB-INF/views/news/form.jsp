@@ -6,107 +6,119 @@
 	<title>${vo.title_name}</title>
 </head>
 <body>
+    <div class="container">
+        <div class="row">
+
+            <h1>Daum 기사 작성</h1>
+            <form name="form" method="post">
+            <table class="table">
+                <tr>
+                    <th>아이디</th>
+                    <td>
+                        <input type="text" name="id" value="${vo.id}"/>
+                    </td>
+                    <th>오픈여부(${vo.open_yn})</th>
+                    <td>
+                        <input type="radio" name="open_yn" value="Y"/> 공개
+                        <input type="radio" name="open_yn" value="N"/> 비공개
+                    </td>
+                </tr>
+                <tr>
+                    <th>등록일</th>
+                    <td>
+                        ${vo.reg_date}
+                    </td>
+                    <th>기사 카테고리</th>
+                    <td>
+                        <select name="category_id">
+                            <c:forEach var="vo" items="${category}">
+                                <option value="${vo.id}">${vo.name}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>제목</th>
+                    <td colspan="3">
+                        <input type="text" name="title_name" value='${vo.title_name}' size="90"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>기사요약</th>
+                    <td colspan="3">
+                        <textarea name="summary" style="width:900px;height:100px;">${vo.summary}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>기사내용</th>
+                    <td colspan="3">
+                        <textarea id="ir1" name="title_contents" style="width:890px;height:400px;">${vo.title_contents}</textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>썸네일</th>
+                    <td colspan="3">
+                        <input type="text" name="thumbnail" value="${vo.thumbnail}" size="100"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>썸네일2</th>
+                    <td colspan="3">
+                        <input type="file" name="file_thumbnail" value="" style="display:none;"/>
+                        <input type="button" name="btn_thumbnail" value="파일첨부"/>
+                        <input type="hidden" name="pathNm" value=""/>
+                        <input type="text" name="title_thumbnail" value="${vo.title_thumbnail}" size="100"/>
+                        <img src="${vo.title_thumbnail}" alt="" id="title_thumbnail"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>기자</th>
+                    <td colspan="3">
+                        <input type="text" name="reporter" value="${vo.reporter}" size="100"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>회사</th>
+                    <td colspan="3">
+                        <input type="text" name="newspaper" value="${vo.newspaper}" size="100"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>원문링크</th>
+                    <td colspan="3">
+                        <input type="text" name="link" value="${vo.link}" size="100"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">&nbsp;</td>
+                </tr>
+                <tr align="center">
+                    <td colspan="4">
+                        <input type="button" name="btn_save" value="저장">
+                        &nbsp;
+                        <input type="button" name="btn_list" value="목록">
+                    </td>
+                </tr>
+            </table>
+            </form>
+
+        </div>
+    </div>
 <h1>
 	${vo.title_name}
 </h1>
 
-<form name="form" method="post">
-<table class="pure-table pure-table-bordered">
-    <tr>
-        <th>아이디</th>
-        <td>
-            <input type="text" name="id" value="${vo.id}"/>
-        </td>
-        <th>오픈여부(${vo.open_yn})</th>
-        <td>
-            <input type="radio" name="open_yn" value="Y"/> 공개
-            <input type="radio" name="open_yn" value="N"/> 비공개
-        </td>
-    </tr>
-    <tr>
-        <th>등록일</th>
-        <td>
-            ${vo.reg_date}
-        </td>
-        <th>기사 카테고리</th>
-        <td>
-            <select name="category_id">
-                <c:forEach var="vo" items="${category}">
-                    <option value="${vo.id}">${vo.name}</option>
-                </c:forEach>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <th>제목</th>
-        <td colspan="3">
-            <input type="text" name="title_name" value='${vo.title_name}' size="120"/>
-        </td>
-    </tr>
-    <tr>
-        <th>기사요약</th>
-        <td colspan="3">
-            <textarea name="summary" style="width:900px;height:100px;">${vo.summary}</textarea>
-        </td>
-    </tr>
-    <tr>
-        <th>기사내용</th>
-        <td colspan="3">
-            <textarea id="ir1" name="title_contents" style="width:890px;height:400px;">${vo.title_contents}</textarea>
-        </td>
-    </tr>
 
-    <tr>
-        <th>썸네일</th>
-        <td colspan="3">
-            <input type="text" name="thumbnail" value="${vo.thumbnail}" size="100"/>
-        </td>
-    </tr>
+<link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <tr>
-        <th>썸네일2</th>
-        <td colspan="3">
-            <input type="file" name="file_thumbnail" value="" style="display:none;"/>
-            <input type="button" name="btn_thumbnail" value="파일첨부"/>
-            <input type="hidden" name="pathNm" value=""/>
-            <input type="text" name="title_thumbnail" value="${vo.title_thumbnail}" size="100"/>
-            <img src="${vo.title_thumbnail}" alt="" id="title_thumbnail"/>
-        </td>
-    </tr>
-    <tr>
-        <th>기자</th>
-        <td colspan="3">
-            <input type="text" name="reporter" value="${vo.reporter}" size="100"/>
-        </td>
-    </tr>
-
-    <tr>
-        <th>회사</th>
-        <td colspan="3">
-            <input type="text" name="newspaper" value="${vo.newspaper}" size="100"/>
-        </td>
-    </tr>
-    <tr>
-        <th>원문링크</th>
-        <td colspan="3">
-            <input type="text" name="link" value="${vo.link}" size="100"/>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="4">&nbsp;</td>
-    </tr>
-    <tr align="center">
-        <td colspan="4">
-            <input type="button" name="btn_save" value="저장">
-            &nbsp;
-            <input type="button" name="btn_list" value="목록">
-        </td>
-    </tr>
-</table>
-</form>
-
-<script type="text/javascript" src="/gogosms/smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
-
+<script type="text/javascript" src="/blog/smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 var oEditors = [];
 
@@ -118,7 +130,7 @@ var sLang = "ko_KR";	// 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko
 nhn.husky.EZCreator.createInIFrame({
 	oAppRef: oEditors,
 	elPlaceHolder: "ir1",
-	sSkinURI: "/gogosms/smarteditor2/SmartEditor2Skin.html",
+	sSkinURI: "/blog/smarteditor2/SmartEditor2Skin.html",
 	htParams : {
 		bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 		bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -178,7 +190,7 @@ $(document).ready(function(){
     });  // file upload
 
     $('[name="btn_list"]').on('click', function() {
-        location.href = '/_adminv2/news.do';
+        location.href = '/news/news';
     });
 
 //    $('[name="title_name"]').val();
@@ -214,7 +226,7 @@ $(document).ready(function(){
         obj.id = '${vo.id}';
         $.ajax({
             type: "put",
-            url: "/_adminv2/news/update",
+            url: "/news/update",
             data: JSON.stringify(obj),
             contentType: "application/json",
             success: function (response) {
@@ -230,7 +242,7 @@ $(document).ready(function(){
         // 등록
         $.ajax({
             type: "post",
-            url: "/_adminv2/news/create",
+            url: "/news/create",
             data: JSON.stringify(obj),
             contentType: "application/json",
             success: function (response) {

@@ -33,7 +33,7 @@ public class NewsAdminController {
         return "news/list";
     }
 
-    @RequestMapping(value = "/news/form1", method = RequestMethod.GET)
+    @RequestMapping(value = "/form1", method = RequestMethod.GET)
     public String formNews1(Model model) {
         List<EgovMap> category = service.getCategory();
 
@@ -41,7 +41,7 @@ public class NewsAdminController {
         return "news/form1";
     }
 
-    @RequestMapping(value = "/news/form", method = RequestMethod.GET)
+    @RequestMapping(value = "/form", method = RequestMethod.GET)
     public String formNews(Model model) {
         List<EgovMap> category = service.getCategory();
 
@@ -50,7 +50,7 @@ public class NewsAdminController {
     }
 
 
-    @RequestMapping(value = "/news/form/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
     public String formNews(@PathVariable("id") String id, Model model) {
         NewsVO vo = service.detailNews(id);
         List<EgovMap> category = service.getCategory();
@@ -60,7 +60,7 @@ public class NewsAdminController {
         return "news/form";
     }
 
-    @RequestMapping(value = "/popup/news/view/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/popup/view/{id}", method = RequestMethod.GET)
     public String viewNews(@PathVariable("id") String id, Model model) {
         NewsVO vo = service.detailNews(id);
 
@@ -69,13 +69,13 @@ public class NewsAdminController {
     }
 
     //----
-    @RequestMapping(value = "/news/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseVO createNews(@RequestBody NewsVO newsVO) {
         int cnt = service.createNews(newsVO);
         return ResponseVO.of("OK");
     }
 
-    @RequestMapping(value = "/news/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public ResponseVO updateNews(@RequestBody NewsVO newsVO) {
         int cnt = service.updateNews(newsVO);
         return ResponseVO.of("OK");

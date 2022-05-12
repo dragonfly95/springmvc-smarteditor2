@@ -10,6 +10,21 @@ public class PageVO {
     private int begin;
     private int end;
 
+    /**
+     * 결과건수
+     */
+    private int resultCount = 0;
+
+    private int startOffset = 0;
+
+    public int getResultCount() {
+        return resultCount;
+    }
+
+    public void setResultCount(int resultCount) {
+        this.resultCount = resultCount;
+    }
+
     public int getBegin() {
         int calc = ((page / size) * groupSize) + 1;
         if (page % groupSize == 0) {

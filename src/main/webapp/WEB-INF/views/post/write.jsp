@@ -6,46 +6,51 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	Write!
-</h1>
+    <div class="container">
+        <div class="row">
+            <h1>
+                Write!
+            </h1>
 
-<input type="hidden" name="id" value=""/>
+            <input type="hidden" name="id" value=""/>
 
-<table class="table table-striped" style="max-width: 1000px;">
-	<colgroup>
-		<col width="120"/>
-		<col width="*"/>
-	</colgroup>
-	<tr>
-	    <td colspan="2" align="right">
-	    <input type="button" name="btnList" value="목록"/>
-	        <input type="button" name="btnWrite" value="저장" data-id="${post.id}"/>
-	    </td>
-	</tr>
-	<tr>
-		<td>카테고리</td>
-		<td>
-			<select name="categoryId">
-			<option value="">select option</option>
-			<c:forEach var="vo" items="${category}">
-			    <option value="${vo.id}">${vo.name}</option>
-			</c:forEach>
-			</select>
-		</td>
-	</tr>
-	<tr>
-		<td>제목</td>
-		<td>
-			<input type="text" name="title" value="${post.title}" size="90"/>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<textarea id="ir1" name="content" cols="110" rows="20">${post.content}</textarea>
-		</td>
-	</tr>
-</table>
+            <table class="table table-striped" style="max-width: 1000px;">
+                <colgroup>
+                    <col width="120"/>
+                    <col width="*"/>
+                </colgroup>
+                <tr>
+                    <td colspan="2" align="right">
+                    <input type="button" name="btnList" value="목록"/>
+                        <input type="button" name="btnWrite" value="저장" data-id="${post.id}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>카테고리</td>
+                    <td>
+                        <select name="categoryId">
+                        <option value="">select option</option>
+                        <c:forEach var="vo" items="${category}">
+                            <option value="${vo.id}">${vo.name}</option>
+                        </c:forEach>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>제목</td>
+                    <td>
+                        <input type="text" name="title" value="${post.title}" size="90"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea id="ir1" name="content" cols="110" rows="20">${post.content}</textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
 
 
 <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />

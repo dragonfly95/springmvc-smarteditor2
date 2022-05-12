@@ -25,7 +25,7 @@ public class HelloworldController {
     	for (String string : arr) {
 			System.out.println(string);
 		}
-        return "home";
+        return "redirect:/post/list.do";
     }
 
 	private String dir = "C:\\Users\\user\\Downloads\\workspaces\\springmvc-smarteditor2\\src\\main\\webapp\\blog\\";
