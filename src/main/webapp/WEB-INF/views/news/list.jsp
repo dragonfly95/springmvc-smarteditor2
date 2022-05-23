@@ -19,6 +19,11 @@
             </h1>
 
             <h2>전체 : ${totalCount} 건</h2>
+            <div style="position: relative; top: -41px; left:700px;">
+                <button name="btnExcel">엑셀다운로드</button>
+                <button name="btnExcel2">엑셀업로드</button>
+                <input type="file" name="fileObject" style="display:none;"/>
+            </div>
             <table class="pure-table pure-table-bordered">
                 <tr>
                     <th>썸네일</th>
@@ -55,6 +60,7 @@
 
         </div>
     </div>
+    <iframe src="about:blank" id="hframe" width="0" height="0"></iframe>
 
 <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -69,6 +75,36 @@ $(document).ready(function(){
         location.href = '/news/form';
     });
 
+    $('[name="btnExcel"]').on('click', function() {
+        document.querySelector('#hframe').src  = '/news/download';
+    });
+
+    $('[name="btnExcel2"]').on('click', function() {
+        document.querySelector('[name="fileObject"]').click();
+    });
+
+    $('[name="fileObject"]').on('change', function() {
+        var data = new FormData();
+        data.append('fileObject', $(this)[0].files[0]);
+
+         $.ajax({
+             type: "POST",
+             url: "/news/upload",
+             data: data,
+             processData: false,
+             contentType: false,
+             dataType: 'json',
+             success: function (data) {
+                location.reload();
+             },
+               complete: function() {
+                 var _clone = document.querySelector('[name="fileObject"]').cloneNode();
+                document.querySelector('[name="fileObject"]').replaceWith(_clone);
+                document.querySelector('[name="fileObject"]').value = '';
+               }
+         });
+
+    });
 });
 
 function goPage(cpage) {

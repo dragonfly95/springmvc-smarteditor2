@@ -23,4 +23,6 @@ public interface DaumNewsMapper {
 
     void batchInsert(List<NewsVO> data);
 
+    void batchInsert2(List<EgovMap> data);
+
 }
