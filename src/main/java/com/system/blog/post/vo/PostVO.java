@@ -1,6 +1,8 @@
 package com.system.blog.post.vo;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import java.sql.Timestamp;
 import java.util.List;
