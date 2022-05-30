@@ -16,7 +16,7 @@ public class PostVO {
     private Timestamp regDate;
 
     private CategoryVO category;
-    private List<CommentVO> comment;
+//    private List<CommentVO> comment;
 
 }
 
