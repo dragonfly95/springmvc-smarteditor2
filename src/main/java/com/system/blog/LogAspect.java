@@ -11,7 +11,7 @@ import java.util.Date;
 @Aspect
 public class LogAspect {
 
-    @Around("execution(* com.system.blog..*.*())")
+    @Around("execution(* com.system.blog.post..*(..))")
     public Object LogGetDate(ProceedingJoinPoint joinPoint) throws Throwable {
         Date date = new Date();
         long time = date.getTime();

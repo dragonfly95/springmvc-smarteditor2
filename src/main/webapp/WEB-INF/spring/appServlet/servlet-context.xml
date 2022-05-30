@@ -74,8 +74,8 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-	<beans:bean id='advisorClass' class='com.system.blog.LogAspect'/>
+<!--	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>-->
+<!--	<beans:bean id='advisorClass' class='com.system.blog.LogAspect'/>-->
 
 
 <!--	<beans:bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>-->

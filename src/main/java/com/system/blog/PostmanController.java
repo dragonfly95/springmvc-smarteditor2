@@ -32,14 +32,16 @@ public class PostmanController {
 
     // 등록
     @RequestMapping(value = "postman", method = RequestMethod.POST)
-    private @ResponseBody PostVO save(@RequestBody PostVO postVO) {
+    private @ResponseBody PostVO save(@Login LoginVO loginVO,@RequestBody PostVO postVO) {
         postVO.setId(Idgenerator.getId());
+        postVO.setUserId(loginVO.getUserId());
         postMapper.writeProcess(postVO);
         return postVO;
     }
     // 수정
     @RequestMapping(value = "postman/{id}", method = RequestMethod.PUT)
-    private @ResponseBody ResponseVO update(@RequestBody PostVO postVO) {
+    private @ResponseBody ResponseVO update(@Login LoginVO loginVO,@RequestBody PostVO postVO) {
+        postVO.setUserId(loginVO.getUserId());
         postMapper.updateProcess(postVO);
         return new ResponseVO("SAVED");
     }
