@@ -1,14 +1,20 @@
 package com.system.blog.post.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.core.serializer.Serializer;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
 @Data
-public class PostVO {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class PostVO implements Serializable {
+
+    private static final long serialVersionUID = -9026936407398324865L;
 
     private String id;
     private String categoryId;
@@ -18,7 +24,7 @@ public class PostVO {
     private Timestamp regDate;
 
     private CategoryVO category;
-//    private List<CommentVO> comment;
+    private List<CommentVO> comment;
 
 }
 

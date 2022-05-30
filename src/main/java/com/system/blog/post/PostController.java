@@ -82,8 +82,8 @@ public class PostController {
     }
 
     @DeleteMapping(value = "deleteProcess/{id}")
-    private ResponseEntity deleteProcess(@PathVariable("id") String id) {
-        int row = postMapper.deleteProcess(id);
+    private ResponseEntity deleteProcess(@Login LoginVO loginVO, @PathVariable("id") String id) {
+        int row = postMapper.deleteProcess(id, loginVO.getUserId());
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }
 }
