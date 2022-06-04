@@ -281,6 +281,27 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>
 
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.11.Final</version>
+		</dependency>
+
+		<!-- 스프링 ORM -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- JPA, Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.2.11.Final</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

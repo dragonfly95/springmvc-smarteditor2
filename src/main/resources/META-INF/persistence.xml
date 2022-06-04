@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             version="2.1">
+    <persistence-unit name="simple-jpa-application" transaction-type="RESOURCE_LOCAL">
+        <class>com.system.blog.jpa.Farmer</class>
+        <properties>
+            <!-- 속성 설정 -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="1q2w3e4r5t"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb?useSSL=false&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;autoReconnect=true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+        </properties>
+    </persistence-unit>
+</persistence>
