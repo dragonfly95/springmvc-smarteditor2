@@ -4,6 +4,7 @@ import com.system.blog.Idgenerator;
 import com.system.blog.ResponseVO;
 import com.system.blog.config.Login;
 import com.system.blog.post.mapper.CategoryMapper;
+import com.system.blog.post.service.CategoryService;
 import com.system.blog.post.vo.CategoryVO;
 import com.system.blog.user.vo.LoginVO;
 import com.system.blog.user.vo.UserVO;
@@ -29,6 +30,9 @@ public class CategoryController {
     @Autowired
     private CategoryMapper categoryMapper;
 
+    @Autowired
+    private CategoryService service;
+
     @GetMapping(value = "crud.do")
     public String crud() {
         return "category/crud";
@@ -36,11 +40,7 @@ public class CategoryController {
 
     @GetMapping(value = "list")
     public ResponseEntity list(String userId) {
-        List<EgovMap> list = categoryMapper.getList(userId);
-        EgovMap map = new EgovMap();
-        map.put("data", list);
-
-        return ResponseEntity.ok().body(map);
+        return ResponseEntity.ok().body(service.list(userId));
     }
 
     @PostMapping(value = "insertProcess")

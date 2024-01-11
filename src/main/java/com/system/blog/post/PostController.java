@@ -5,6 +5,7 @@ import com.system.blog.ResponseVO;
 import com.system.blog.config.Login;
 import com.system.blog.post.mapper.CategoryMapper;
 import com.system.blog.post.mapper.PostMapper;
+import com.system.blog.post.service.PostService;
 import com.system.blog.post.vo.PostVO;
 import com.system.blog.user.vo.LoginVO;
 import com.system.blog.user.vo.UserVO;
@@ -34,6 +35,10 @@ public class PostController {
     @Autowired
     private PostMapper postMapper;
 
+
+    @Autowired
+    private PostService postService;
+
     @Autowired
     private CategoryMapper categoryMapper;
 
@@ -52,25 +57,20 @@ public class PostController {
 
     @GetMapping(value = "list.do")
     private String list(Model model) {
-        List<PostVO> posts = postMapper.getSearch();
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", postService.posts());
         return "post/list";
     }
 
 
     @GetMapping(value = "view.do")
     private String view(Model model, @RequestParam("postId") String postId) {
-        PostVO post = postMapper.getPost(postId);
-        model.addAttribute("post", post);
+        model.addAttribute("post", postService.view(postId));
         return "post/view";
     }
 
     @PostMapping(value = "writeProcess")
     private ResponseEntity writeProcess(@Login LoginVO loginVO, @RequestBody PostVO postVO) {
-
-        postVO.setId(Idgenerator.getId());
-        postVO.setUserId(loginVO.getUserId());
-        int row = postMapper.writeProcess(postVO);
+        postService.writeProcess(loginVO, postVO);
         return ResponseEntity.ok().body(ResponseVO.of("ok"));
     }
 
