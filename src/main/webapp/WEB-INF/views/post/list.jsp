@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+<%@ include file="/WEB-INF/views/lib.jsp" %>
+<%
+    int total = jTemplate.queryForObject("SELECT COUNT(1) FROM `post` ", Integer.class);
+    pageContext.setAttribute("total", total);
+%>
 <html>
 <head>
 	<title>Home</title>
@@ -11,7 +16,7 @@
     <div class="container">
         <div class="row">
             <h1>
-                List!
+                List! - 게시글 ${total} 조회
             </h1>
         </div>
         <div class="row">
