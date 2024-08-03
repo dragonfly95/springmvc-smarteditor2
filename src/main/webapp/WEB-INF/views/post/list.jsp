@@ -16,9 +16,29 @@
     <div class="container">
         <div class="row">
             <h1>
-                List! - 게시글 ${total} 조회
+                List! - 게시글 ${pageVO.total} 조회
             </h1>
         </div>
+
+${pageVO}
+<p>&nbsp;<p>
+
+<button data-page=1 class="nextgo" ${pageVO.firstGroupPage == false ? 'enabled': 'disabled'}>첫페이지</button>
+
+
+            <button data-page=${pageVO.page - 1} class="nextgo"
+            ${pageVO.firstGroupPage == false ? 'enabled': 'disabled'}>이전페이지</button>
+
+<c:forEach var="num" begin="${pageVO.begin}" end="${pageVO.end}">
+            <button data-page=${num} class="nextgo">${num}</button>
+</c:forEach>
+<c:if test="${!pageVO.lastGroupPage}">
+            <button data-page=${pageVO.page + 1} class="nextgo">다음페이지</button>
+</c:if>
+
+<button data-page=${pageVO.lastPage} class="nextgo" ${pageVO.lastGroupPage == false ? 'enabled': 'disabled'}>마지막페이지</button>
+
+
         <div class="row">
             <input type="button" name="btnWrite" value="글작성"/>
             <input type="button" name="btnLogout" value="logout" class="btn btn-parimary"/>
@@ -52,6 +72,11 @@ $(document).ready(function () {
     });
     $('[name="btnLogout"]').on('click', function() {
         location.href = '/user/logout.do';
+    });
+
+    $('.nextgo').on('click', function() {
+        var page = this.dataset.page;
+        location.href = 'http://localhost:8080/post/list.do?page='+page;
     });
 });
 </script>

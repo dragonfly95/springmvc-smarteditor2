@@ -2,13 +2,18 @@ package com.system.blog.config;
 
 public class PageVO {
     public int page = 1;
-    public int size = 10;
+    public int size = 5;
     public int offset;
     private int total;
-    private int groupSize = 10;
+    private int groupSize = 5;
 
     private int begin;
     private int end;
+
+    private boolean firstGroupPage = false;
+    private boolean lastGroupPage = false;
+
+    private int lastPage = 1;
 
     /**
      * 결과건수
@@ -23,6 +28,23 @@ public class PageVO {
 
     public void setResultCount(int resultCount) {
         this.resultCount = resultCount;
+    }
+
+    public boolean isFirstGroupPage() {
+        // groupPage가 첫페이지인지 계산
+        return this.getOffset() / this.getGroupSize() < this.getGroupSize();
+    }
+    public boolean isLastGroupPage() {
+        // groupPage가 마지막페이지인지 계산
+        int diff = this.getEnd() - this.getBegin();
+        return !((this.groupSize -1) == diff);
+    }
+
+    public int getLastPage() {
+        return
+        (int)Math.ceil(new Double(1)* total/groupSize) == 0
+                ? 1
+                : (int)Math.ceil(new Double(1)* total/groupSize);
     }
 
     public int getBegin() {
@@ -89,14 +111,19 @@ public class PageVO {
 
     @Override
     public String toString() {
-        return "Page{" +
+        return "PageVO{" +
                 "page=" + page +
                 ", size=" + size +
-                ", offset=" + getOffset() +
-                ", total=" + total +
+                ", offset=" + this.getOffset() +
+                ", total=" + this.getTotal() +
                 ", groupSize=" + groupSize +
-                ", begin=" + getBegin() +
-                ", end=" + getEnd() +
+                ", begin=" + this.getBegin() +
+                ", end=" + this.getEnd() +
+                ", firstGroupPage=" + this.isFirstGroupPage() +
+                ", lastGroupPage=" + this.isLastGroupPage() +
+                ", lastpage=" + this.getLastPage() +
+                ", resultCount=" + resultCount +
+                ", startOffset=" + startOffset +
                 '}';
     }
 }

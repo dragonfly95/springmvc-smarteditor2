@@ -119,6 +119,7 @@ $(document).ready(function () {
                     contentType: "application/json",
                     success: function (response) {
                         location.href='/post/list.do';
+                        location.href='/post/write.do';
                     }
                 });
             </c:when>
@@ -132,6 +133,7 @@ $(document).ready(function () {
                     contentType: "application/json",
                     success: function (response) {
                         location.href='/post/list.do';
+                        // location.href='/post/write.do';
                     }
                 });
             </c:otherwise>

@@ -3,6 +3,7 @@ package com.system.blog.post;
 import com.system.blog.Idgenerator;
 import com.system.blog.ResponseVO;
 import com.system.blog.config.Login;
+import com.system.blog.config.PageVO;
 import com.system.blog.post.mapper.CategoryMapper;
 import com.system.blog.post.mapper.PostMapper;
 import com.system.blog.post.service.PostService;
@@ -56,8 +57,8 @@ public class PostController {
     }
 
     @GetMapping(value = "list.do")
-    private String list(Model model) {
-        model.addAttribute("posts", postService.posts());
+    private String list(PageVO pageVO, Model model) {
+        model.addAttribute("posts", postService.posts(pageVO));
         return "post/list";
     }
 

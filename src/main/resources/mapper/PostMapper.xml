@@ -73,5 +73,14 @@
         SELECT `id`, `category_id`, `title`, `content`, `user_id`, `reg_date`
         FROM `post`
         WHERE 1
+        ORDER BY reg_date desc
+        LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="getTotal" resultType="int">
+        /* getTotal */
+        SELECT count(1)
+        FROM `post`
+        WHERE 1
     </select>
 </mapper>

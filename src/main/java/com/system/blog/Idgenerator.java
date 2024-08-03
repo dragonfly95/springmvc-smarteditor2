@@ -7,8 +7,8 @@ import java.util.UUID;
 
 public class Idgenerator {
     public static String getId() {
-        IdGenerator idGenerator = new JdkIdGenerator();
-        UUID uuid = idGenerator.generateId();
+//        IdGenerator idGenerator = new JdkIdGenerator();
+        UUID uuid = UUID.randomUUID();
         return uuid.toString().replaceAll("-","");
     }
 }

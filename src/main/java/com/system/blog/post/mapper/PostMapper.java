@@ -1,5 +1,6 @@
 package com.system.blog.post.mapper;
 
+import com.system.blog.config.PageVO;
 import com.system.blog.post.vo.PostVO;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
 
@@ -16,6 +17,8 @@ public interface PostMapper {
 
     int updateProcess(PostVO postVO);
 
-    List<PostVO> getSearch();
+    List<PostVO> getSearch(PageVO page);
+
+    int getTotal(PageVO page);
 
 }

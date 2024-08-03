@@ -12,6 +12,18 @@
 
 <div class="container">
     <div class="row">
+        <ul>
+            <c:forEach var="comment" items="${comments}">
+            <li data-id="${comment.id }">
+                ${comment.commentText} = ${comment.user[0].name} - ${comment.regDate }
+                <input type="button" name="btnDeleeComment" value="삭제 "/>
+            </li>
+
+            </c:forEach>
+        </ul>
+    </div>
+    <hr/>
+    <div class="row">
     <!-- contents -->
 
         <input type="hidden" name="postId" value="${postId}"/>
@@ -30,17 +42,7 @@
 
     </div>
 
-    <div class="row">
-        <ul>
-            <c:forEach var="comment" items="${comments}">
-            <li data-id="${comment.id }">
-                ${comment.commentText} = ${comment.user[0].name} - ${comment.regDate }
-                <input type="button" name="btnDeleeComment" value="삭제 "/>
-            </li>
-            
-            </c:forEach>
-        </ul>
-    </div>
+
 </div>
 
 <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
@@ -54,8 +56,9 @@
 <script>
 $(document).ready(function () {
 
-    function loadData() {
-        location.href = '/post/view.do?postId=${postId}';
+    function loadData1() {
+        // location.href = '/post/view.do?postId=${postId}';
+        $('#commentList').load('/comment/list/${postId}');
     }
     $('[name="btnComment"]').click(function() {
         
@@ -78,7 +81,7 @@ $(document).ready(function () {
             	   alert('로그인 후 리뷰 가능합니다');
                    $('[name="commentText"]').val('');
                } else {
-            	   loadData(); 
+            	   loadData1();
                }
             },
             error: function (xhr) {
@@ -103,7 +106,7 @@ $(document).ready(function () {
              	   alert('로그인 후 리뷰 가능합니다');
                     $('[name="commentText"]').val('');
                 } else {
-             	   loadData(); 
+             	   loadData1();
                 }
             }
         });

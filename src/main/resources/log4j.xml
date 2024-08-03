@@ -61,7 +61,7 @@
     </logger>
 
     <logger name="jdbc.resultset" additivity="false">
-        <level value="warn" />
+        <level value="error" />
         <appender-ref ref="console"/>
     </logger>
 
