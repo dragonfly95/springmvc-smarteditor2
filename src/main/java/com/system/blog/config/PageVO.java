@@ -2,10 +2,10 @@ package com.system.blog.config;
 
 public class PageVO {
     public int page = 1;
-    public int size = 5;
+    public int size = 10;
     public int offset;
     private int total;
-    private int groupSize = 5;
+    private int groupSize = 10;
 
     private int begin;
     private int end;

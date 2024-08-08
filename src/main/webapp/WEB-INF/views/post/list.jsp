@@ -20,7 +20,7 @@
             </h1>
         </div>
 
-${pageVO}
+
 <p>&nbsp;<p>
 
 <button data-page=1 class="nextgo" ${pageVO.firstGroupPage == false ? 'enabled': 'disabled'}>첫페이지</button>

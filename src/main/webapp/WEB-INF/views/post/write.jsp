@@ -30,10 +30,16 @@
                     <td>
                         <select name="categoryId">
                         <option value="">select option</option>
+                        <option value="add">추가</option>
                         <c:forEach var="vo" items="${category}">
                             <option value="${vo.id}">${vo.name}</option>
                         </c:forEach>
                         </select>
+
+                        <span id="divAddArea" style="display:none;">
+                        <input type="text" name="category_name" value="" placeholder="카테고리를 입력하세요"/>
+                        <button name="btnAddCategory">추가</button>
+                        </span>
                     </td>
                 </tr>
                 <tr>
@@ -119,7 +125,7 @@ $(document).ready(function () {
                     contentType: "application/json",
                     success: function (response) {
                         location.href='/post/list.do';
-                        location.href='/post/write.do';
+                        // location.href='/post/write.do';
                     }
                 });
             </c:when>
@@ -139,6 +145,55 @@ $(document).ready(function () {
             </c:otherwise>
         </c:choose>
     });
+
+    // add category
+    $('[name="categoryId"]').on('change', function() {
+        var selected = $(event.currentTarget).val();
+        if (selected === 'add') {
+            $('#divAddArea').show();
+        } else {
+            $('#divAddArea').hide();
+        }
+    });
+
+    // add ajax upateProcess
+    $('[name="btnAddCategory"]').on('click', function() {
+
+        var cat = $('[name="category_name"]').val();
+
+        if (cat === '') {
+            return;
+        }
+
+        //--------------------------------
+        $.ajax({
+            type: "post",
+            url: "/category/insertProcess",
+            data: JSON.stringify({'name': cat}),
+            contentType: "application/json",
+            success: function (response) {
+                $('#divAddArea').hide();
+                $('[name="category_name"]').val('');
+
+                $.get('/category/list', function(jqXHR) {
+
+                }, 'json')
+                .done(function(jqXHR){
+                    console.log(jqXHR);
+                    var str = '';
+                    str += '                        <option value="">select option</option>';
+                    str += '                        <option value="add">추가</option>';
+
+                    $.each(jqXHR.data, function(index, el) {
+                        str += '<option value="' + el.id +'">' + el.name + '</option>';
+                    });
+                    $('[name="categoryId"]').empty();
+                    $('[name="categoryId"]').append(str);
+                });
+            }
+        });
+    });
+
 });
 </script>
 </body>

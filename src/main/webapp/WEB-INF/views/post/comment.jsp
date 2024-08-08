@@ -4,6 +4,12 @@
 <html>
 <head>
 	<title>Home</title>
+	<style>
+	.reply { display:inline-block; }
+	.depth0 { width: 0px; }
+	.depth1 { width: 30px; }
+	.depth2 { width: 60px; }
+	</style>
 </head>
 <body>
 <h1>
@@ -15,8 +21,20 @@
         <ul>
             <c:forEach var="comment" items="${comments}">
             <li data-id="${comment.id }">
+                <span class="reply depth${comment.depth}"></span>
                 ${comment.commentText} = ${comment.user[0].name} - ${comment.regDate }
+                <p>
+                <span class="reply depth${comment.depth}"></span>
+                <input type="button" name="btnReply" data-comment="${comment.id}" value="답변 "/>
                 <input type="button" name="btnDeleeComment" value="삭제 "/>
+                </p>
+                <p style="display: none;" id="${comment.id}">
+                <textarea name="replayInput${comment.id}"></textarea>
+                <input type="button" name="btnReplyAddComment"
+                       data-comment="${comment.id}"
+                       data-depth="${comment.depth}"
+                       value="저장 "/>
+                </p>
             </li>
 
             </c:forEach>
@@ -110,7 +128,58 @@ $(document).ready(function () {
                 }
             }
         });
-    })
+    });
+
+
+    $('[name="btnReply"]').on('click', function() {
+        // 답변
+        var commentId = $(event.currentTarget).data('comment');
+        $('#' + commentId).show(function() {
+            $('[name="replayInput"]').val('');
+        });
+        debugger
+    });
+
+    $('[name="btnReplyAddComment"]').on('click', function() {
+
+        var commentId = $(event.currentTarget).data('comment');
+        var depth = $(event.currentTarget).data('depth');
+        var strReply = $('[name="replayInput'+ commentId +'"]').val();
+
+        if (strReply === '') return;
+
+        var comment = {
+            commentText: $('[name="replayInput'+ commentId +'"]').val(),
+            postId: '${postId}',
+            idRef: commentId,
+            depth: Number(depth + 1)
+        };
+
+console.log(comment);
+
+        $.ajax({
+            type: "post",
+            url: "/comment/insertProcess/${postId}",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('method1', 'api')
+            },
+            data: JSON.stringify(comment),
+            contentType: "application/json",
+            success: function (response) {
+
+               if (response.msg === 'NOT_LOGIN') {
+            	   alert('로그인 후 리뷰 가능합니다');
+                   $('[name="commentText"]').val('');
+               } else {
+            	   loadData1();
+               }
+            },
+            error: function (xhr) {
+                alert(xhr);
+            }
+        });
+
+    });
 });
 
 

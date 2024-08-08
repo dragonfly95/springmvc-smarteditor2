@@ -19,8 +19,6 @@
         <ul>
             <li>
                 <input type="button" name="btnList" value="목록"/>
-            </li>
-            <li>
                 <input type="button" name="btnEdit" value="수정" data-id="${post.id}"/>
             </li>
         </ul>

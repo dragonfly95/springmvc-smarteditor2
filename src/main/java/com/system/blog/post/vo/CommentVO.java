@@ -12,5 +12,6 @@ public class CommentVO {
     private Timestamp regDate;
     private String postId;
     private String userId;
-
+    private String idRef;
+    private int depth;
 }
