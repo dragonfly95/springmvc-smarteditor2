@@ -36,6 +36,7 @@
 
     <resultMap id="postMap" type="com.system.blog.post.vo.PostVO">
         <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="no" property="no" jdbcType="VARCHAR"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="category_id" property="categoryId" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
@@ -46,8 +47,10 @@
 
     <select id="getPost" resultMap="postMap">
         /* getPost */
-        SELECT `id`, `category_id`, `title`, `content`, `user_id`, `reg_date`
-        FROM `post`
+        SELECT
+              @rownum := @rownum + 1 AS NO,
+              `id`, `category_id`, `title`, `content`, `user_id`, `reg_date`
+        FROM `post`, (SELECT @rownum := #{offset}) AS r
         WHERE 1
           and id = #{postId}
     </select>
@@ -70,8 +73,10 @@
 
     <select id="getSearch" resultMap="postMap">
         /* getSearch */
-        SELECT `id`, `category_id`, `title`, `content`, `user_id`, `reg_date`
-        FROM `post`
+        SELECT
+             @rownum := @rownum + 1 AS NO,
+             `id`, `category_id`, `title`, `content`, `user_id`, `reg_date`
+        FROM `post`, (SELECT @rownum := #{offset}) AS r
         WHERE 1
         ORDER BY reg_date desc
         LIMIT #{offset}, #{size}
@@ -82,5 +87,22 @@
         SELECT count(1)
         FROM `post`
         WHERE 1
+    </select>
+
+    <select id="prevPost" resultType="com.system.blog.post.vo.PostVO">
+        SELECT
+		      `id`, `category_id`, `title`, `content`, `user_id`, `reg_date`
+        FROM `post`
+        WHERE reg_date &lt; (SELECT reg_date FROM `post` WHERE id=#{id})
+        ORDER BY reg_date desc
+        LIMIT 0, 1
+    </select>
+        <select id="nextPost" resultType="com.system.blog.post.vo.PostVO">
+        SELECT
+		      `id`, `category_id`, `title`, `content`, `user_id`, `reg_date`
+        FROM `post`
+        WHERE reg_date &gt; (SELECT reg_date FROM `post` WHERE id=#{id})
+        ORDER BY reg_date desc
+        LIMIT 0, 1
     </select>
 </mapper>

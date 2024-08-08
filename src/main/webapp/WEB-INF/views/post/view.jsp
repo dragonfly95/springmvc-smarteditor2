@@ -19,18 +19,33 @@
         <ul>
             <li>
                 <input type="button" name="btnList" value="목록"/>
-                <input type="button" name="btnEdit" value="수정" data-id="${post.id}"/>
+                <input type="button" name="btnEdit" value="수정" data-id="${post.post.id}"/>
             </li>
         </ul>
 
         <ul>
-            <li>${post.title}</li>
-            <li>${post.category.name}</li>
-            <li>${post.regDate}</li>
-            <li>${post.content}</li>
+            <li>${post.post.title}</li>
+            <li>${post.post.category.name}</li>
+            <li>${post.post.regDate}</li>
+            <li>${post.post.content}</li>
         </ul>
 
         <div id="commentList"></div>
+    </div>
+    <div class="row">
+        <p>&nbsp;</p>
+    </div>
+    <div class="row">
+        <ul id='post'>
+            <li data-id="${post.prevPost.id}">
+                <c:out value="${post.prevPost.no}"/>
+                <c:out value="${post.prevPost.title}"/> :: ${post.post.regDate}
+            </li>
+            <li data-id=     "${post.nextPost.id}">
+                <c:out value="${post.nextPost.no}"/>
+                <c:out value="${post.nextPost.title}"/> :: ${post.post.regDate}
+            </li>
+        </ul>
     </div>
 </div>
 
@@ -44,6 +59,10 @@
 
 <script>
 $(document).ready(function () {
+    $('#post li').on('click', function() {
+        var postId = $(event.currentTarget).data('id');
+        location.href = '/post/view.do?postId=' + postId + '&page=${pageVO.page}';
+    });
     $('[name="btnList"]').on('click', function() {
         location.href='/post/list.do';
     });
@@ -54,7 +73,7 @@ $(document).ready(function () {
     });
 
     function loadData() {
-        $('#commentList').load('/comment/list/${post.id}');
+        $('#commentList').load('/comment/list/${post.post.id}');
     }
     loadData();
 });

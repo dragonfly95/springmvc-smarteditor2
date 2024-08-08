@@ -6,6 +6,7 @@ import com.system.blog.config.PageVO;
 import com.system.blog.post.mapper.PostMapper;
 import com.system.blog.post.vo.PostVO;
 import com.system.blog.user.vo.LoginVO;
+import egovframework.rte.psl.dataaccess.util.EgovMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,12 @@ public class PostService {
         return postMapper.getSearch(page);
     }
 
-    public PostVO view(String postId) {
-        return postMapper.getPost(postId);
+    public Object view(String postId) {
+        EgovMap returnMap = new EgovMap();
+        returnMap.put("prevPost", postMapper.prevPost(postId));
+        returnMap.put("nextPost", postMapper.nextPost(postId));
+        returnMap.put("post", postMapper.getPost(postId));
+        return returnMap;
     }
 
     public int writeProcess(LoginVO loginVO, PostVO postVO) {

@@ -64,7 +64,7 @@ public class PostController {
 
 
     @GetMapping(value = "view.do")
-    private String view(Model model, @RequestParam("postId") String postId) {
+    private String view(Model model, @RequestParam("postId") String postId, PageVO pageVO) {
         model.addAttribute("post", postService.view(postId));
         return "post/view";
     }

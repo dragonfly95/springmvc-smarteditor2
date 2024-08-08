@@ -21,4 +21,9 @@ public interface PostMapper {
 
     int getTotal(PageVO page);
 
+    /** 이전게시물     */
+    PostVO prevPost(String postId);
+
+    /* 다음게시물 */
+    PostVO nextPost(String postId);
 }

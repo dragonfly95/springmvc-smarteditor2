@@ -45,6 +45,7 @@
             <ul id='post'>
                 <c:forEach var="post" items="${posts}">
                     <li data-id="${post.id}">
+                        <c:out value="${post.no}"/>
                         <c:out value="${post.title}"/> :: ${post.regDate}
                     </li>
                 </c:forEach>
@@ -64,7 +65,7 @@
 $(document).ready(function () {
     $('#post li').on('click', function() {
         var postId = $(event.currentTarget).data('id');
-        location.href = '/post/view.do?postId=' + postId;
+        location.href = '/post/view.do?postId=' + postId + '&page=${pageVO.page}';
     });
 
     $('[name="btnWrite"]').on('click', function() {

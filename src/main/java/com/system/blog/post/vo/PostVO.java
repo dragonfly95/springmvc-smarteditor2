@@ -8,6 +8,7 @@ import java.util.List;
 @Data
 public class PostVO {
 
+    private String no;
     private String id;
     private String categoryId;
     private String title;
